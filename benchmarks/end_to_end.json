@@ -1,0 +1,70 @@
+{
+  "workload": {
+    "cycles": 1000,
+    "channels": 5,
+    "raw_samples_at_max_rate": 6000,
+    "aligned_samples_per_channel": 600,
+    "duration_seconds": 60.0,
+    "dataset_bytes": 81022579
+  },
+  "configuration": {
+    "backend": "numba",
+    "threads": 4,
+    "batch_size": 128,
+    "target_rate_hz": 10.0,
+    "alignment": "linear",
+    "diagnostic_rules": 3
+  },
+  "measurement": {
+    "first_run_runtime_s": 23.250374800001737,
+    "first_run_sampled_peak_rss_mib": 134.47265625,
+    "first_run_sampled_rss_increase_mib": 63.75390625,
+    "warm_run_runtime_s": [
+      2.9437282999861054,
+      2.5542014999955427,
+      2.4400267000019085
+    ],
+    "warm_repeats": 3,
+    "median_runtime_s": 2.5542014999955427,
+    "p95_runtime_s": 2.904775619987049,
+    "throughput_cycles_s": 391.5117894973224,
+    "sampled_peak_rss_mib": 135.9609375,
+    "sampled_rss_increase_mib": 25.68359375,
+    "output_artifact_bytes": 807732
+  },
+  "result_summary": {
+    "cycles_processed": 1000,
+    "channels_processed": 5,
+    "flagged_cycles": 0,
+    "total_flags": 0,
+    "runtime_seconds": 2.431056900008116,
+    "throughput_cycles_per_second": 411.3437246148626
+  },
+  "environment": {
+    "utc": "2026-10-02T04:58:10Z",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel(R) Core(TM) Ultra 9 285H",
+    "logical_cpus": 16,
+    "python_version": "3.13.12",
+    "packages": {
+      "numpy": "2.4.4",
+      "numba": "0.68.0",
+      "psutil": "7.2.2"
+    }
+  },
+  "methodology": {
+    "timed_scope": [
+      "load",
+      "validation",
+      "alignment",
+      "feature processing",
+      "diagnostic rules",
+      "artifact output"
+    ],
+    "excluded": [
+      "synthetic dataset generation",
+      "benchmark report generation"
+    ],
+    "notes": "First run reported separately; median and p95 use subsequent runs. OS file caching may benefit warm runs. RSS sampled every 1 ms."
+  }
+}
