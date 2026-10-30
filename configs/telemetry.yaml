@@ -1,0 +1,20 @@
+target_rate_hz: 10.0
+alignment: linear
+batch_size: 64
+required_channels:
+  - pressure_1
+  - volume_flow_1
+  - temperature_1
+  - vibration_1
+  - motor_power
+rules:
+  vibration_1_rms:
+    max: 50.0
+    flag: HIGH_VIBRATION
+  temperature_1_max:
+    max: 80.0
+    flag: HIGH_TEMPERATURE
+  pressure_1_max:
+    max: 250.0
+    flag: HIGH_PRESSURE
+
