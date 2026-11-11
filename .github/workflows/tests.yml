@@ -20,3 +20,13 @@ jobs:
       - run: telemetry generate-synthetic .ci-data --cycles 4 --channels 3 --samples 120 --sampling-rates 10 5 2
       - run: telemetry validate .ci-data
       - run: telemetry process .ci-data --backend numba --threads 2 --batch-size 2 --output .ci-results
+
+  optional:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -e ".[dev,ml,agent]"
+      - run: python -m pytest tests/test_ml.py tests/test_agent.py -q

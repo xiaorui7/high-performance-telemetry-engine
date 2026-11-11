@@ -49,6 +49,24 @@ def _parser() -> argparse.ArgumentParser:
     end_to_end.add_argument("--threads", type=int, default=4)
     end_to_end.add_argument("--warm-repeats", type=int, default=3)
     end_to_end.add_argument("--seed", type=int, default=2026)
+    training = commands.add_parser("train", help="evaluate and fit experimental valve model")
+    training.add_argument("--data", type=Path, required=True)
+    training.add_argument("--config", type=Path, default=Path("configs/telemetry.yaml"))
+    training.add_argument("--output", type=Path, required=True)
+    prediction = commands.add_parser("predict", help="predict valve condition from features")
+    prediction.add_argument("--features", type=Path, required=True)
+    prediction.add_argument("--model", type=Path, required=True)
+    prediction.add_argument("--output", type=Path, required=True)
+    investigation = commands.add_parser("investigate", help="investigate a processed run")
+    investigation.add_argument("--results", type=Path)
+    investigation.add_argument("--model", type=Path)
+    investigation.add_argument("--table", type=Path)
+    investigation.add_argument("--report", type=Path, default=Path("report.md"))
+    investigation.add_argument("--trace", type=Path, default=Path("trace.json"))
+    investigation.add_argument("--prompt-version", choices=("v1","v2"), default="v2")
+    investigation.add_argument("--yes", action="store_true")
+    investigation.add_argument("--demo", action="store_true", help="offline synthetic flow with scripted fake model")
+    investigation.add_argument("--predictions-source", choices=("model","oof"), default="model")
     return parser
 
 
@@ -56,6 +74,26 @@ def main(argv: list[str] | None = None) -> None:
     parser = _parser()
     args = parser.parse_args(argv)
     try:
+        if args.command == "train":
+            from .ml.dataset import build_table
+            from .ml.train import train
+            train(build_table(args.data,args.config,args.output),args.output)
+            return
+        if args.command == "predict":
+            from .ml.predict import predict
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            predict(args.features,args.model).to_csv(args.output,index=False)
+            return
+        if args.command == "investigate":
+            if args.demo:
+                from .agent.demo import run_demo
+                run_demo(args.report,args.trace,args.yes)
+                return
+            if any(value is None for value in (args.results,args.model,args.table)):
+                raise ValueError("--results, --model and --table are required unless --demo is used")
+            from .agent.graph import investigate
+            investigate(args.results,args.model,args.table,args.report,args.trace,args.prompt_version,args.yes,predictions_source=args.predictions_source)
+            return
         if args.command == "generate-synthetic":
             path = generate_synthetic_dataset(args.output, args.cycles, args.channels, args.samples,
                                               args.sampling_rates, args.seed)
@@ -99,7 +137,7 @@ def main(argv: list[str] | None = None) -> None:
             summary = process_to_directory(dataset.iter_cycles(), config, args.output, args.backend,
                                            args.threads, f"{dataset.source_name}:{args.data}")
             print(json.dumps(summary, indent=2))
-    except (ValueError, OSError, KeyError) as exc:
+    except (ValueError, OSError, KeyError, ImportError) as exc:
         parser.exit(2, f"telemetry: {exc}\n")
 
 

@@ -1,0 +1,80 @@
+{
+  "source": "blocked-CV OOF XGBoost; public UCI hydraulic labels",
+  "cycles": 2205,
+  "overall_degraded_rate": 0.4897959183673469,
+  "precision_at": {
+    "10": 1.0,
+    "20": 1.0,
+    "50": 1.0,
+    "100": 1.0
+  },
+  "candidate_selection": {
+    "seed": 2026,
+    "slices": 3,
+    "slice_size": 100,
+    "candidate_count": 19,
+    "cycle_ids": [
+      "hydraulic-0009",
+      "hydraulic-0010",
+      "hydraulic-0011",
+      "hydraulic-0309",
+      "hydraulic-0310",
+      "hydraulic-0345",
+      "hydraulic-0356",
+      "hydraulic-0361",
+      "hydraulic-0362",
+      "hydraulic-0384",
+      "hydraulic-0396",
+      "hydraulic-1728",
+      "hydraulic-1733",
+      "hydraulic-1760",
+      "hydraulic-1761",
+      "hydraulic-1763",
+      "hydraulic-1771",
+      "hydraulic-1773",
+      "hydraulic-1774"
+    ],
+    "rule": "p_degraded in [0.3,0.7] plus top 3 per slice; cap 8"
+  },
+  "uncertain_candidates": {
+    "baseline_a": {
+      "samples": 19,
+      "degraded": 15,
+      "predicted_degraded": 13,
+      "precision": 0.8461538461538461,
+      "recall": 0.7333333333333333,
+      "f1": 0.7857142857142857,
+      "accuracy": 0.6842105263157895
+    },
+    "baseline_b": {
+      "samples": 19,
+      "degraded": 15,
+      "predicted_degraded": 11,
+      "precision": 0.9090909090909091,
+      "recall": 0.6666666666666666,
+      "f1": 0.7692307692307693,
+      "accuracy": 0.6842105263157895
+    }
+  },
+  "all_cycles": {
+    "baseline_a": {
+      "samples": 2205,
+      "degraded": 1080,
+      "predicted_degraded": 907,
+      "precision": 0.7894156560088202,
+      "recall": 0.662962962962963,
+      "f1": 0.7206844489179668,
+      "accuracy": 0.7482993197278912
+    },
+    "baseline_b": {
+      "samples": 2205,
+      "degraded": 1080,
+      "predicted_degraded": 896,
+      "precision": 0.7779017857142857,
+      "recall": 0.6453703703703704,
+      "f1": 0.7054655870445344,
+      "accuracy": 0.7360544217687075
+    }
+  },
+  "neighbor_rule": "mean OOF p_degraded over current cycle \u00b15 in evaluation scope, threshold 0.5; no labels used in averaging"
+}

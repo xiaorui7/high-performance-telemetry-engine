@@ -1,0 +1,156 @@
+{
+  "status": "partial",
+  "mode": "uncertain",
+  "predictions_source": "oof",
+  "model": "openai:gpt-4.1-mini-2025-04-14",
+  "seed": 2026,
+  "slices": 3,
+  "slice_size": 100,
+  "cases": [
+    {
+      "method": "baseline_a",
+      "slice": 0,
+      "cycle_id": "hydraulic-0010",
+      "actual_degraded": false,
+      "predicted_degraded": true,
+      "p_degraded": 0.7389577627182007,
+      "context_mean": 0.20437484979629514
+    },
+    {
+      "method": "baseline_b",
+      "slice": 0,
+      "cycle_id": "hydraulic-0010",
+      "actual_degraded": false,
+      "predicted_degraded": false,
+      "p_degraded": 0.7389577627182007,
+      "context_mean": 0.20437484979629514
+    },
+    {
+      "method": "baseline_a",
+      "slice": 0,
+      "cycle_id": "hydraulic-0009",
+      "actual_degraded": false,
+      "predicted_degraded": false,
+      "p_degraded": 0.3460369110107422,
+      "context_mean": 0.21093854579058557
+    },
+    {
+      "method": "baseline_b",
+      "slice": 0,
+      "cycle_id": "hydraulic-0009",
+      "actual_degraded": false,
+      "predicted_degraded": false,
+      "p_degraded": 0.3460369110107422,
+      "context_mean": 0.21093854579058557
+    },
+    {
+      "method": "baseline_a",
+      "slice": 0,
+      "cycle_id": "hydraulic-0011",
+      "actual_degraded": false,
+      "predicted_degraded": false,
+      "p_degraded": 0.2246484756469726,
+      "context_mean": 0.18523847514932806
+    },
+    {
+      "method": "baseline_b",
+      "slice": 0,
+      "cycle_id": "hydraulic-0011",
+      "actual_degraded": false,
+      "predicted_degraded": false,
+      "p_degraded": 0.2246484756469726,
+      "context_mean": 0.18523847514932806
+    },
+    {
+      "method": "v1",
+      "slice": 0,
+      "cycle_id": "hydraulic-0010",
+      "actual_degraded": false,
+      "predicted_degraded": true,
+      "grounded": true,
+      "failed": false,
+      "report": "The valve is degraded because the p_degraded probability is 0.739, which is above the 0.5 threshold, and the one-off trend shows a significant increase compared to neighbors.",
+      "llm_calls": 1,
+      "seconds": 2.120338600128889,
+      "input_tokens": 768,
+      "output_tokens": 57,
+      "total_tokens": 825
+    },
+    {
+      "method": "v1",
+      "slice": 0,
+      "cycle_id": "hydraulic-0009",
+      "actual_degraded": null,
+      "predicted_degraded": null,
+      "grounded": false,
+      "failed": true,
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0
+    }
+  ],
+  "summary": {
+    "baseline_a": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.6666666666666666,
+      "n": 3,
+      "grounding_pass_rate": null,
+      "failure_rate": null,
+      "calls": 0,
+      "tokens": 0,
+      "cost_usd": 0.0,
+      "attempted": 3
+    },
+    "baseline_b": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 1.0,
+      "n": 3,
+      "grounding_pass_rate": null,
+      "failure_rate": null,
+      "calls": 0,
+      "tokens": 0,
+      "cost_usd": 0.0,
+      "attempted": 3
+    },
+    "v1": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.0,
+      "n": 1,
+      "grounding_pass_rate": 0.5,
+      "failure_rate": 0.5,
+      "calls": 1,
+      "tokens": 825,
+      "cost_usd": 0.00039840000000000003,
+      "attempted": 2
+    }
+  },
+  "usage": {
+    "llm_calls": 1,
+    "input_tokens": 768,
+    "output_tokens": 57,
+    "total_tokens": 825
+  },
+  "failures": [
+    {
+      "slice": 0,
+      "method": "v1",
+      "cycle_id": "hydraulic-0009",
+      "error_type": "OpenAIRateLimitError",
+      "daily_limit": true
+    }
+  ],
+  "candidate_ids": {
+    "0": [
+      "hydraulic-0010",
+      "hydraulic-0009",
+      "hydraulic-0011"
+    ]
+  }
+}

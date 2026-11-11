@@ -1,0 +1,290 @@
+{
+  "demo": true,
+  "model": "scripted-fake",
+  "note": "Trimmed from deterministic synthetic demo; raw prompts and full arrays omitted.",
+  "grounded": true,
+  "approved": true,
+  "steps": [
+    {
+      "kind": "tool",
+      "name": "triage",
+      "cycle_id": null,
+      "evidence": {
+        "cycles": [
+          {
+            "cycle_id": "synthetic-000002",
+            "predicted_class": 90,
+            "p_73": 0.003,
+            "p_80": 0.017,
+            "p_90": 0.979,
+            "p_100": 0.001,
+            "p_degraded": 0.999,
+            "flags": [],
+            "flag_count": 0
+          },
+          {
+            "cycle_id": "synthetic-000006",
+            "predicted_class": 90,
+            "p_73": 0.004,
+            "p_80": 0.043,
+            "p_90": 0.952,
+            "p_100": 0.001,
+            "p_degraded": 0.999,
+            "flags": [],
+            "flag_count": 0
+          },
+          {
+            "cycle_id": "synthetic-000010",
+            "predicted_class": 90,
+            "p_73": 0.019,
+            "p_80": 0.01,
+            "p_90": 0.97,
+            "p_100": 0.001,
+            "p_degraded": 0.999,
+            "flags": [],
+            "flag_count": 0
+          }
+        ]
+      }
+    },
+    {
+      "kind": "llm",
+      "name": null,
+      "cycle_id": null,
+      "evidence": null
+    },
+    {
+      "kind": "tool",
+      "name": "neighbor_trend",
+      "cycle_id": "synthetic-000002",
+      "evidence": {
+        "cycle_id": "synthetic-000002",
+        "trend": "persistent"
+      }
+    },
+    {
+      "kind": "llm",
+      "name": null,
+      "cycle_id": null,
+      "evidence": null
+    },
+    {
+      "kind": "tool",
+      "name": "compare_to_healthy",
+      "cycle_id": "synthetic-000002",
+      "evidence": {
+        "cycle_id": "synthetic-000002",
+        "features": [
+          {
+            "feature": "volume_flow_1_std",
+            "value": 0.122,
+            "healthy_mean": 0.15,
+            "healthy_std": 0.012,
+            "z": -2.397,
+            "constant_baseline_changed": false
+          },
+          {
+            "feature": "pressure_1_std",
+            "value": 0.101,
+            "healthy_mean": 0.081,
+            "healthy_std": 0.01,
+            "z": 1.973,
+            "constant_baseline_changed": false
+          },
+          {
+            "feature": "motor_power_p95",
+            "value": 50.99,
+            "healthy_mean": 51.874,
+            "healthy_std": 0.458,
+            "z": -1.929,
+            "constant_baseline_changed": false
+          },
+          {
+            "feature": "motor_power_max",
+            "value": 51.058,
+            "healthy_mean": 51.912,
+            "healthy_std": 0.452,
+            "z": -1.889,
+            "constant_baseline_changed": false
+          },
+          {
+            "feature": "vibration_1_median",
+            "value": 40.458,
+            "healthy_mean": 41.281,
+            "healthy_std": 0.467,
+            "z": -1.762,
+            "constant_baseline_changed": false
+          }
+        ]
+      }
+    },
+    {
+      "kind": "llm",
+      "name": null,
+      "cycle_id": null,
+      "evidence": null
+    },
+    {
+      "kind": "tool",
+      "name": "neighbor_trend",
+      "cycle_id": "synthetic-000006",
+      "evidence": {
+        "cycle_id": "synthetic-000006",
+        "trend": "persistent"
+      }
+    },
+    {
+      "kind": "llm",
+      "name": null,
+      "cycle_id": null,
+      "evidence": null
+    },
+    {
+      "kind": "tool",
+      "name": "compare_to_healthy",
+      "cycle_id": "synthetic-000006",
+      "evidence": {
+        "cycle_id": "synthetic-000006",
+        "features": [
+          {
+            "feature": "volume_flow_1_std",
+            "value": 0.117,
+            "healthy_mean": 0.15,
+            "healthy_std": 0.012,
+            "z": -2.878,
+            "constant_baseline_changed": false
+          },
+          {
+            "feature": "pressure_1_std",
+            "value": 0.108,
+            "healthy_mean": 0.081,
+            "healthy_std": 0.01,
+            "z": 2.706,
+            "constant_baseline_changed": false
+          },
+          {
+            "feature": "pressure_1_peak_to_peak",
+            "value": 0.361,
+            "healthy_mean": 0.246,
+            "healthy_std": 0.044,
+            "z": 2.593,
+            "constant_baseline_changed": false
+          },
+          {
+            "feature": "volume_flow_1_peak_to_peak",
+            "value": 0.343,
+            "healthy_mean": 0.486,
+            "healthy_std": 0.066,
+            "z": -2.162,
+            "constant_baseline_changed": false
+          },
+          {
+            "feature": "volume_flow_1_max",
+            "value": 20.608,
+            "healthy_mean": 21.24,
+            "healthy_std": 0.425,
+            "z": -1.486,
+            "constant_baseline_changed": false
+          }
+        ]
+      }
+    },
+    {
+      "kind": "llm",
+      "name": null,
+      "cycle_id": null,
+      "evidence": null
+    },
+    {
+      "kind": "tool",
+      "name": "neighbor_trend",
+      "cycle_id": "synthetic-000010",
+      "evidence": {
+        "cycle_id": "synthetic-000010",
+        "trend": "persistent"
+      }
+    },
+    {
+      "kind": "llm",
+      "name": null,
+      "cycle_id": null,
+      "evidence": null
+    },
+    {
+      "kind": "tool",
+      "name": "compare_to_healthy",
+      "cycle_id": "synthetic-000010",
+      "evidence": {
+        "cycle_id": "synthetic-000010",
+        "features": [
+          {
+            "feature": "pressure_1_std",
+            "value": 0.1,
+            "healthy_mean": 0.081,
+            "healthy_std": 0.01,
+            "z": 1.925,
+            "constant_baseline_changed": false
+          },
+          {
+            "feature": "pressure_1_peak_to_peak",
+            "value": 0.32,
+            "healthy_mean": 0.246,
+            "healthy_std": 0.044,
+            "z": 1.652,
+            "constant_baseline_changed": false
+          },
+          {
+            "feature": "temperature_1_std",
+            "value": 0.0,
+            "healthy_mean": 0.0,
+            "healthy_std": 0.0,
+            "z": -1.225,
+            "constant_baseline_changed": false
+          },
+          {
+            "feature": "temperature_1_rms",
+            "value": 30.316,
+            "healthy_mean": 30.825,
+            "healthy_std": 0.443,
+            "z": -1.147,
+            "constant_baseline_changed": false
+          },
+          {
+            "feature": "temperature_1_min",
+            "value": 30.316,
+            "healthy_mean": 30.825,
+            "healthy_std": 0.443,
+            "z": -1.147,
+            "constant_baseline_changed": false
+          }
+        ]
+      }
+    },
+    {
+      "kind": "llm",
+      "name": null,
+      "cycle_id": null,
+      "evidence": null
+    },
+    {
+      "kind": "tool",
+      "name": "test_rule",
+      "cycle_id": null,
+      "evidence": {
+        "feature": "pressure_1_mean",
+        "threshold": 10.0,
+        "direction": ">",
+        "precision": 0.75,
+        "recall": 1.0,
+        "support": 40,
+        "evaluation": "descriptive labeled-table evaluation, not held-out"
+      }
+    },
+    {
+      "kind": "llm",
+      "name": null,
+      "cycle_id": null,
+      "evidence": null
+    }
+  ]
+}

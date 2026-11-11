@@ -2,11 +2,10 @@
 
 ## About this repository
 
-This is an independent public re-implementation of the telemetry-processing work I did
-during my Summer 2026 software engineering internship. The original code and data belong
-to the company and remain confidential, so this version was rebuilt after the internship
-using the public UCI hydraulic-system dataset and deterministic synthetic data. All
-benchmarks and test results in this repository come from this public version.
+This is an independent public re-implementation of telemetry-processing work from
+my Summer 2026 software engineering internship. The original code and data are
+confidential. This version uses the public UCI hydraulic dataset and synthetic data;
+all results reported here come from this public version.
 
 ## Overview
 
@@ -261,7 +260,7 @@ docs/                  dataset setup and design
 
 - This is a local CPU processing engine, not a distributed or streaming service.
 - Diagnostic rules are user-supplied thresholds, not predictive-maintenance models.
-- No factory, employer, customer, or production deployment is claimed.
+- No employer data or production deployment is included in this repository.
 - The UCI dataset is public external demonstration data and is not bundled.
 - Linear/nearest resampling is intentionally simple; no anti-alias filter is applied
   before downsampling.
@@ -269,3 +268,69 @@ docs/                  dataset setup and design
   that bound but does not provide out-of-core arrays within a single cycle.
 - RSS sampling is approximate, and benchmark results depend on hardware and system load.
 - The project does not infer causal faults or measure diagnostic accuracy.
+
+## Condition model (experimental)
+
+The public UCI study uses 2,205 cycles. The ranking and binary results use
+blocked-CV out-of-fold (OOF) predictions; the 4-class result uses blocked CV.
+
+| Measure | Result | Comparison or scope |
+|---|---:|---|
+| Precision@100 | 100.0% | 49.0% overall degraded rate (random ranking) |
+| Binary F1, single-cycle threshold | 72.1% | All 2,205 cycles; OOF p_degraded ≥ 0.5 |
+| Binary F1, neighbor-mean threshold | 70.5% | All 2,205 cycles; OOF mean ≥ 0.5 |
+| 4-class XGBoost macro-F1 | 53.2% | Contiguous blocked 5-fold CV |
+
+Install optional dependencies with `pip install -e ".[dev,ml]"`.
+Download public UCI data with `python scripts/download_uci.py`.
+Train with `telemetry train --data data/hydraulic --config configs/telemetry.yaml --output models/valve`.
+Predict with `telemetry predict --features models/valve/features.csv --model models/valve --output predictions.csv`.
+See [MODEL_CARD](docs/MODEL_CARD.md) for measured blocked CV and shuffled comparison; [AGENT](docs/AGENT.md) documents optional investigation.
+
+## Investigation agent (experimental)
+
+```mermaid
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	triage(triage)
+	investigate(investigate)
+	propose_rule(propose_rule)
+	human_approval(human_approval)
+	write_report(write_report)
+	verify(verify)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> triage;
+	human_approval --> write_report;
+	investigate --> propose_rule;
+	propose_rule --> human_approval;
+	triage --> investigate;
+	verify -.-> __end__;
+	verify -.-> write_report;
+	write_report --> verify;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
+
+```
+
+`triage` ranks cycles by model risk and existing flags. `investigate` gathers
+neighbor trends and feature differences from healthy training statistics.
+`propose_rule` checks an optional threshold against labeled data;
+`human_approval` controls whether that proposal is saved. `write_report`
+summarizes evidence, and `verify` checks reported numbers and cycle IDs,
+retrying once when grounding fails. This is an experimental local workflow.
+
+Run the offline example:
+
+```bash
+telemetry investigate --demo --yes --report results/demo/report.md --trace results/demo/trace.json
+```
+
+See the [sample report](docs/examples/report.md) and
+[trimmed trace](docs/examples/trace.json), both **demo, scripted model output**.
+The [agent guide](docs/AGENT.md) explains the real evaluation and its limits.

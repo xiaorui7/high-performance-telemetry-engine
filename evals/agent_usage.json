@@ -1,0 +1,9 @@
+{
+  "llm_calls": 37,
+  "input_tokens": 57281,
+  "output_tokens": 1224,
+  "total_tokens": 58505,
+  "approximate_usd": 0.024870800000000002,
+  "note": "Recorded successful responses only. Earlier failed pilot did not retain usage; billed total may be higher. Uncached list-price estimate.",
+  "status": "full evaluation blocked by provider requests-per-day limit"
+}

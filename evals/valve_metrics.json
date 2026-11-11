@@ -1,0 +1,278 @@
+{
+  "seed": 2026,
+  "cycles": 2205,
+  "classes": [
+    73,
+    80,
+    90,
+    100
+  ],
+  "results": {
+    "blocked": {
+      "majority": {
+        "macro_f1": 0.16891891891891891,
+        "accuracy": 0.5102040816326531,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            360
+          ],
+          [
+            0,
+            0,
+            0,
+            360
+          ],
+          [
+            0,
+            0,
+            0,
+            360
+          ],
+          [
+            0,
+            0,
+            0,
+            1125
+          ]
+        ]
+      },
+      "logistic": {
+        "macro_f1": 0.3986253781552891,
+        "accuracy": 0.508390022675737,
+        "confusion_matrix": [
+          [
+            176,
+            24,
+            8,
+            152
+          ],
+          [
+            49,
+            89,
+            63,
+            159
+          ],
+          [
+            54,
+            69,
+            53,
+            184
+          ],
+          [
+            77,
+            196,
+            49,
+            803
+          ]
+        ]
+      },
+      "xgboost": {
+        "macro_f1": 0.5323381859491576,
+        "accuracy": 0.636734693877551,
+        "confusion_matrix": [
+          [
+            257,
+            21,
+            9,
+            73
+          ],
+          [
+            61,
+            120,
+            43,
+            136
+          ],
+          [
+            33,
+            67,
+            80,
+            180
+          ],
+          [
+            20,
+            42,
+            116,
+            947
+          ]
+        ]
+      }
+    },
+    "stratified": {
+      "majority": {
+        "macro_f1": 0.16891891891891891,
+        "accuracy": 0.5102040816326531,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            360
+          ],
+          [
+            0,
+            0,
+            0,
+            360
+          ],
+          [
+            0,
+            0,
+            0,
+            360
+          ],
+          [
+            0,
+            0,
+            0,
+            1125
+          ]
+        ]
+      },
+      "logistic": {
+        "macro_f1": 0.529662007918237,
+        "accuracy": 0.6634920634920635,
+        "confusion_matrix": [
+          [
+            236,
+            13,
+            18,
+            93
+          ],
+          [
+            35,
+            120,
+            89,
+            116
+          ],
+          [
+            45,
+            101,
+            72,
+            142
+          ],
+          [
+            64,
+            12,
+            14,
+            1035
+          ]
+        ]
+      },
+      "xgboost": {
+        "macro_f1": 0.9339420060617348,
+        "accuracy": 0.9492063492063492,
+        "confusion_matrix": [
+          [
+            346,
+            13,
+            0,
+            1
+          ],
+          [
+            16,
+            325,
+            13,
+            6
+          ],
+          [
+            5,
+            14,
+            320,
+            21
+          ],
+          [
+            6,
+            2,
+            15,
+            1102
+          ]
+        ]
+      }
+    }
+  },
+  "top_features": [
+    {
+      "feature": "volume_flow_1_mean",
+      "gain": 3.591031789779663
+    },
+    {
+      "feature": "volume_flow_1_max",
+      "gain": 3.310648202896118
+    },
+    {
+      "feature": "volume_flow_1_std",
+      "gain": 3.200556755065918
+    },
+    {
+      "feature": "volume_flow_1_rms",
+      "gain": 2.5674831867218018
+    },
+    {
+      "feature": "pressure_1_min",
+      "gain": 2.2156968116760254
+    },
+    {
+      "feature": "volume_flow_1_median",
+      "gain": 2.0552849769592285
+    },
+    {
+      "feature": "pressure_1_std",
+      "gain": 2.0114428997039795
+    },
+    {
+      "feature": "motor_power_max",
+      "gain": 1.9171297550201416
+    },
+    {
+      "feature": "pressure_1_mean",
+      "gain": 1.855971336364746
+    },
+    {
+      "feature": "motor_power_rms",
+      "gain": 1.6352922916412354
+    },
+    {
+      "feature": "pressure_1_rms",
+      "gain": 1.3821790218353271
+    },
+    {
+      "feature": "motor_power_p95",
+      "gain": 1.2735803127288818
+    },
+    {
+      "feature": "pressure_1_median",
+      "gain": 1.053268313407898
+    },
+    {
+      "feature": "temperature_1_mean",
+      "gain": 0.9665535092353821
+    },
+    {
+      "feature": "motor_power_std",
+      "gain": 0.8842882513999939
+    },
+    {
+      "feature": "pressure_1_p95",
+      "gain": 0.8289424180984497
+    },
+    {
+      "feature": "vibration_1_max",
+      "gain": 0.7480924725532532
+    },
+    {
+      "feature": "vibration_1_median",
+      "gain": 0.7249954342842102
+    },
+    {
+      "feature": "temperature_1_max",
+      "gain": 0.7119019627571106
+    },
+    {
+      "feature": "motor_power_mean",
+      "gain": 0.7097698450088501
+    }
+  ]
+}

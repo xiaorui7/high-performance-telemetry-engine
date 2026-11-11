@@ -47,6 +47,6 @@ Each sensor file is a tab/whitespace-delimited matrix: a row is one cycle and co
 are time samples. `profile.txt` contains five cycle-level condition annotations. The
 adapter opens selected files together, reads one row from each, verifies equal row
 counts and the expected `60 × rate` samples, parses only numeric float64 values, and
-yields a `TelemetryCycle`. The labels remain source metadata; the engine does not train
-or evaluate a model from them.
+yields a `TelemetryCycle`. The core pipeline retains labels as source metadata. The optional condition-model
+CLI joins valve labels to extracted features for evaluation and training.
 

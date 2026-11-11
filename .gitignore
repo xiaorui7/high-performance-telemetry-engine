@@ -17,3 +17,16 @@ data/
 results/
 *.nbc
 *.nbi
+
+models/
+trace.json
+
+# Local credentials and secret material
+.env
+.env.*
+*.env
+*.pem
+*.key
+secrets/
+credentials*.json
+*credentials*.json

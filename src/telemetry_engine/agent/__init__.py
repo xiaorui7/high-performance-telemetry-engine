@@ -1,0 +1,1 @@
+"""Optional evidence-grounded investigation."""
